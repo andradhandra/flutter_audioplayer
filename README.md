@@ -1,2 +1,2 @@
 # flutter-audioplayer
-Simple audioplayer app for job recruitment
+Simple Flutter audioplayer app for job recruitment test
