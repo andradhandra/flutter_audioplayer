@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_audioplayer/model/music_list_model.dart';
+import 'package:flutter_audioplayer/provider/music_provider.dart';
+import 'package:provider/provider.dart';
 
 class MusicTile extends StatefulWidget {
  MusicTile({
     Key? key,
+    @required this.songIndex,
+    @required this.musicModel
   }) : super(key: key);
+
+  final int? songIndex;
+  final MusicModel? musicModel;
 
   @override
   _MusicTileState createState() => _MusicTileState();
 }
 
 class _MusicTileState extends State<MusicTile> {
-  bool isPlaying = false;
-
   @override
   Widget build(BuildContext context) {
+    MusicProvider provider = Provider.of<MusicProvider>(context, listen: false);
     return Padding(
       padding: EdgeInsets.all(6),
       child: Row(
@@ -23,37 +30,45 @@ class _MusicTileState extends State<MusicTile> {
               maxHeight: 80.0,
               maxWidth: 80.0,
             ),
-            child: Image.network('https://upload.wikimedia.org/wikipedia/en/7/73/TULUS_SELF_TITLED_COVER_ALBUM.jpg'),
+            child: Image.network(
+              widget.musicModel?.artworkUrl60 ?? 'http://bprpedungan.com/wp-content/uploads/2017/08/Person-placeholder.jpg'
+            ),
           ),
           SizedBox(width: 10.0),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Music Title",
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w600
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Text(
+                    widget.musicModel?.trackName ?? 'No title available',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w600
+                    ),
+                    overflow: TextOverflow.fade,
+                    softWrap: false,
+                    maxLines: 1,
+                  ),
                 ),
-              ),
-              SizedBox(height: 6.0),
-              Text(
-                "Music description",
-                style: TextStyle(
-                  fontSize: 14.0,
-                  color: Colors.grey
-                ),
-              )
-            ],
+                SizedBox(height: 6.0),
+                Text(
+                  widget.musicModel?.collectionName ?? 'No album available',
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.grey
+                  ),
+                )
+              ],
+            ),
           ),
           Spacer(),
           IconButton(
             onPressed: () {
-              setState(() {
-                isPlaying = !isPlaying;
-              });
+              provider.playMusic(index: widget.songIndex);
             }, 
-            icon: isPlaying
+            icon: provider.nowPlayingModel.isPlaying && provider.nowPlayingModel.songIndex == widget.songIndex
               ? Icon(
                   Icons.pause_rounded,
                   size: 32.0,
