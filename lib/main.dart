@@ -4,10 +4,10 @@ import 'package:flutter_audioplayer/provider/music_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(SimpleAudioPlayer());
 }
 
-class MyApp extends StatelessWidget {
+class SimpleAudioPlayer extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
