@@ -1,5 +1,5 @@
 # flutter_audioplayer
-Simple Flutter audioplayer app for job recruitment test
+Simple Flutter audioplayer app for learning new state management system
 
 ## Supported Devices
 This app supports: 
