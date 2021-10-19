@@ -7,6 +7,9 @@ build/
 # If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock
 generated_plugin_registrant.dart
+.flutter-plugins
+.flutter-plugins-dependencies
+flutter_audioplayer.iml
 
 # Directory created by dartdoc
 # If you don't generate documentation locally you can remove this line.
