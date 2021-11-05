@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_audioplayer/model/music_list_model.dart';
 import 'package:flutter_audioplayer/provider/music_provider.dart';
-import 'package:provider/provider.dart';
 
 class MusicTile extends StatefulWidget {
  MusicTile({
@@ -20,7 +19,7 @@ class MusicTile extends StatefulWidget {
 class _MusicTileState extends State<MusicTile> {
   @override
   Widget build(BuildContext context) {
-    MusicProvider provider = Provider.of<MusicProvider>(context, listen: false);
+    // MusicProvider provider = Provider.of<MusicProvider>(context, listen: false);
     return Padding(
       padding: EdgeInsets.all(6),
       child: Row(
@@ -64,20 +63,20 @@ class _MusicTileState extends State<MusicTile> {
             ),
           ),
           Spacer(),
-          IconButton(
-            onPressed: () {
-              provider.playMusic(index: widget.songIndex);
-            }, 
-            icon: provider.nowPlayingModel.isPlaying && provider.nowPlayingModel.songIndex == widget.songIndex
-              ? Icon(
-                  Icons.pause_rounded,
-                  size: 32.0,
-                )
-              : Icon(
-                  Icons.play_arrow_rounded,
-                  size: 32.0,
-                )
-          )
+          // IconButton(
+          //   onPressed: () {
+          //     provider.playMusic(index: widget.songIndex);
+          //   }, 
+          //   icon: provider.nowPlayingModel.isPlaying && provider.nowPlayingModel.songIndex == widget.songIndex
+          //     ? Icon(
+          //         Icons.pause_rounded,
+          //         size: 32.0,
+          //       )
+          //     : Icon(
+          //         Icons.play_arrow_rounded,
+          //         size: 32.0,
+          //       )
+          // )
         ],
       ),
     );

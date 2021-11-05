@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_audioplayer/provider/music_provider.dart';
-import 'package:provider/provider.dart';
 
 class SearchBar extends StatefulWidget {
   const SearchBar({
@@ -17,11 +16,11 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   TextEditingController searchBarController = TextEditingController();
   
-  void searchMusic(String val) async {
-    MusicProvider provider = Provider.of<MusicProvider>(context, listen: false);
-    provider.changeTerm(val);
-    await provider.fetchMusicList();
-  }
+  // void searchMusic(String val) async {
+  //   MusicProvider provider = Provider.of<MusicProvider>(context, listen: false);
+  //   provider.changeTerm(val);
+  //   await provider.fetchMusicList();
+  // }
 
   @override
   void dispose() {
@@ -35,7 +34,7 @@ class _SearchBarState extends State<SearchBar> {
       padding: widget.padding,
       child: TextField(
         controller: searchBarController,
-        onSubmitted: searchMusic,
+        // onSubmitted: searchMusic,
         decoration: InputDecoration(
           hintText: 'Search',
           prefixIcon: Icon(Icons.search_rounded),
